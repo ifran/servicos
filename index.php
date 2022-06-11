@@ -18,16 +18,22 @@
 
         <link rel="stylesheet" href="<?=PATH_CSS?>jquery-ui.css">
 
+        <!-- Caminha para JS -->
         <script src="<?=PATH_JS?>jquery-1.12.4.js"></script>
         <script src="<?=PATH_JS?>jquery-ui.js"></script>
+
+        <!-- <script src="<?=PATH_JS?>bootstrap.bundle.min.js"></script> -->
+        <script src="<?=PATH_JS?>genericFuncs.js?v=<?=$iV?>" type="text/javascript"></script>
 
         <!-- Bootstrap core CSS -->
         <link href="<?=PATH_CSS?>bootstrap.min.css" rel="stylesheet"/>
         <link href="<?=PATH_CSS?>main.css?v=<?=$iV?>" rel="stylesheet" />
         <link href="<?=PATH_CSS?>pages.css?v=<?=$iV?>" rel="stylesheet" />
-        
-        <script src="<?=PATH_JS?>bootstrap.bundle.min.js"></script>
-        <script src="<?=PATH_JS?>genericFuncs.js?v=<?=$iV?>" type="text/javascript"></script>
+
+        <!-- jQuery Modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
     </head>
     
     <body class="d-flex h-100 text-center text-white bgBlack">

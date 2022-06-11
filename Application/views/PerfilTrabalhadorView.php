@@ -21,8 +21,9 @@
                     <hr class="my-4">
                     <!-- ----------------------------------------------------------- -->
 
-                    <button class="btn btn-primary btn-lg" type="submit">Contatar</button>
-                    <button class="btn btn-primary btn-lg" type="submit">Avaliar</button>
+                    <!-- Link to open the modal -->
+                    <p><a href="#ex1" rel="modal:open">Contatar</a></p>
+                    <p><a href="#ex2" rel="modal:open">Avaliar</a></p>
                     <button class="btn btn-primary btn-lg" type="submit">Whastapp</button>
                     
                     <h2>Avalicações</h2>
@@ -48,4 +49,13 @@
             </div>
         </main>
     </div>
+</div>
+<!-- Modal HTML embedded directly into document -->
+<div id="ex1" class="modal">
+    <p>Thanks for clicking. That felt good.</p>
+    <a href="#" rel="modal:close">Close</a>
+</div>
+<div id="ex2" class="modal">
+    <p>Thanks for clicking. That felt good.</p>
+    <a href="#" rel="modal:close">Close</a>
 </div>
