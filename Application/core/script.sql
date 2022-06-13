@@ -1,87 +1,42 @@
---
--- Banco de dados: memory
---
-
---
--- Estrutura da tabela carta
---
-
-CREATE TABLE carta (
-  carta_id int(11) NOT NULL,
-  carta_img varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela ranking
---
-
-CREATE TABLE ranking (
-  ranking_id int(11) NOT NULL,
-  ranking_pontos int(11) DEFAULT NULL,
-  ranking_nivel int(11) DEFAULT NULL,
-  ranking_name varchar(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela usuario
---
-
+CREATE DATABASE projetoFinal;
 CREATE TABLE usuario (
-  usuario_id int(11) NOT NULL,
-  usuario_email varchar(255) DEFAULT NULL,
-  usuario_senha varchar(35) DEFAULT NULL,
-  usuario_admin tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  usuaro_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  usuario_tipo INTEGER,
+  usuario_nome VARCHAR(255),
+  usuario_email VARCHAR(255),
+  usuario_senha VARCHAR(35),
+  usuario_telefone VARCHAR(20),
+  usuario_data_nascimento DATE,
+  usuario_endereco VARCHAR(255),
+  usuario_cpf VARCHAR(20),
+  usuario_foto VARCHAR(255)
+);
 
---
--- Índices para tabelas despejadas
---
+CREATE TABLE servicos (
+  servico_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  servico_nome VARCHAR(255),
+  servico_aprovacao INTEGER DEFAULT 0
+);
 
---
--- Índices para tabela carta
---
-ALTER TABLE carta
-  ADD PRIMARY KEY (carta_id);
+CREATE TABLE usuario_servico (
+  usuario_id INTEGER,
+  servico_id INTEGER,
+  servico_preco VARCHAR(25)
+);
 
---
--- Índices para tabela ranking
---
-ALTER TABLE ranking
-  ADD PRIMARY KEY (ranking_id);
+CREATE TABLE avaliacao (
+  avaliacao_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  usuario_contratado_id INTEGER,
+  usuario_solicitante_id INTEGER,
+  avaliacao_nota INTEGER,
+  avaliacao_mensagem TEXT
+);
 
---
--- Índices para tabela usuario
---
-ALTER TABLE usuario
-  ADD PRIMARY KEY (usuario_id);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela carta
---
-ALTER TABLE carta
-  MODIFY carta_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT de tabela ranking
---
-ALTER TABLE ranking
-  MODIFY ranking_id int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela usuario
---
-ALTER TABLE usuario
-  MODIFY usuario_id int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE agenda (
+  agenda_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  usuario_contratado_id INTEGER,
+  usuario_solicitante_id INTEGER,
+  agenda_aprovacao BOOLEAN,
+  agenda_mensagem VARCHAR(255),
+  agenda_data DATE
+);
