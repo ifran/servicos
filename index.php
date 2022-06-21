@@ -43,7 +43,7 @@
                     <a href="Home"><h3 class="float-md-start mb-0">Home</h3></a>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
                         <a class="nav-link login bgMenu" href="Login">Login</a>
-                        <a class="nav-link login bgMenu" href="Login">Quero me cadastrar</a>
+                        <a class="nav-link login bgMenu" href="Register">Quero me cadastrar</a>
                     </nav>
                 </div>
             </header>

@@ -1,9 +1,15 @@
 <?php session_start();
-    include($_SERVER['DOCUMENT_ROOT'] . '/ProjetoUlbra/Application/core/Const.php');
+    DEFINE('PROJECT_NAME', 'servicos');
+    include($_SERVER['DOCUMENT_ROOT'] . '/' . PROJECT_NAME . '/Application/core/Const.php');
     
     // No local atual da pasta
     include(PATH_CORE  . 'Database.php');
 
-    include(PATH_MODEL . 'Nivel.php');
-    include(PATH_MODEL . 'Ranking.php');
+    // Incluindo todas as models
+    $oModel = PATH_MODEL;
+    $sArquivos = glob("$oModel{*.php}", GLOB_BRACE);
+
+    foreach($sArquivos as $oPhp) {
+        include($oPhp);
+    }
 ?>

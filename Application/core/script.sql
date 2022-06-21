@@ -40,3 +40,12 @@ CREATE TABLE agenda (
   agenda_mensagem VARCHAR(255),
   agenda_data DATE
 );
+
+INSERT INTO servicos (servico_nome, servico_aprovacao)
+VALUES 
+('Eletricista' , 1),
+('Padeiro'     , 1),
+('Detetive'    , 1),
+('Músico'      , 1),
+('Cozinheiro'  , 1),
+('Faxineiro'   , 1);
