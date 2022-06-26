@@ -1,5 +1,12 @@
-<?php 
-
+<?php
+    $oServicos = new Servicos();
+    $aServicos = $oServicos->servicosAprovados();
+    
+    $sOption = '';
+    foreach ($aServicos as $oServicos)
+    {
+        $sOption .= '<option value="' . $oServicos['servico_id'] . '">' . $oServicos['servico_nome'] . '</option>';
+    }
 ?>
 <div class="container">
     <div id="tabs">
@@ -8,7 +15,7 @@
                 <li><a href="#fragment-1"><span>Cadastro</span></a></li>
             </ul>
             <div>
-                <form action="register.php" method="post" enctype="multipart/form-data">
+                <form action="registerProcess.php" method="post" enctype="multipart/form-data">
                     <div class="col-12">
                         <label for="nome" class="form-label">Nome Completo</label>
                         <input type="text" class="form-control" name="nome" id="nome">
@@ -67,7 +74,7 @@
                     
                     <div class="col-12">
                         <label for="trabalho" class="form-label">Trabalho</label>
-                        <select class="form-control" name="trabalho" id="trabalho">
+                        <select class="form-control" multiple size="4" name="trabalho[]" id="trabalho">
                             <?=$sOption?>
                         </select>
                         <div class="invalid-feedback">
@@ -84,7 +91,7 @@
                     </div>
                     
                     <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" name="cadastro" type="submit">Cadastrar</button>
+                    <input class="w-100 btn btn-primary btn-lg" name="cadastro" value="Cadastrar" type="submit">
                 </form>
             </div>
         </main>

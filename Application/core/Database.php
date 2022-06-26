@@ -1,17 +1,17 @@
 <?php
     class Database extends PDO
     {
-        private function __construct() 
+        public function __construct() 
         {
             parent::__construct(DB_SGBD . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
         }
 
-        private function executeQuery($sSql)
+        public function executeQuery($sSql)
         {
             $this->exec($sSql);
         }
 
-        private function select($sSql)
+        public function select($sSql)
         {
             $oReturn = $this->query($sSql);
             
@@ -21,6 +21,13 @@
             }
 
             return $aRetorno;
+        }
+
+        public function insert($sSql)
+        {
+            $this->executeQuery($sSql);
+            $iId = $this->lastInsertId();
+            return $iId;
         }
     }
 ?>

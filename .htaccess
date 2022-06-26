@@ -4,7 +4,7 @@ php_flag output_buffering on
 RewriteEngine on
 
 ReWriteRule ^Home$ index.php [NC]
-ReWriteRule ^Register index.php?sPage=Register [NC]
+ReWriteRule ^Register$ index.php?sPage=Register [NC]
 ReWriteRule ^Login index.php?sPage=Login [NC]
 ReWriteRule ^PerfilTrabalhador index.php?sPage=PerfilTrabalhador [NC]
 ReWriteRule ^PerfilUsuario index.php?sPage=PerfilUsuario [NC]

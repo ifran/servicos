@@ -4,6 +4,7 @@
     
     // No local atual da pasta
     include(PATH_CORE  . 'Database.php');
+    include(PATH_CORE  . 'Generic.php');
 
     // Incluindo todas as models
     $oModel = PATH_MODEL;

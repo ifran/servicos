@@ -3,16 +3,16 @@
     include('Application/core/Inc.php');
     $iV = rand(1000,2000);
 
-    function headerLocation ($sPage) {
-        echo "<script>window.location.href = '" . $sPage . "' </script>";
-        die();
-    }
+    $sPage = (isset($_GET['sPage']) ? $_GET['sPage'] : '');
+    validateSession($sPage);
+
+    $sLogin = ($_SESSION['bLogin'] ? 'Logout' : 'Login');
 ?>
 <!doctype html>
 <html lang="en" class="h-100">
     <head>
         <meta charset="utf-8">
-        <title>Jogo da Mem&oacute;ria</title>
+        <title>Service</title>
         <link rel="shortcut icon" href="<?=PATH_IMG?>/favicon/favicon.ico" />
         <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
 
@@ -42,7 +42,7 @@
                 <div>
                     <a href="Home"><h3 class="float-md-start mb-0">Home</h3></a>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link login bgMenu" href="Login">Login</a>
+                        <a class="nav-link login bgMenu" href="Login"><?=$sLogin?></a>
                         <a class="nav-link login bgMenu" href="Register">Quero me cadastrar</a>
                     </nav>
                 </div>
@@ -50,10 +50,17 @@
             <main class="px-3">
             <div>
                 <?php 
-                    if (!empty($_GET['sPage'])) {
-                        include(PATH_VIEW . $_GET['sPage'] . 'View.php'); 
-                    } else {
-                        include(PATH_VIEW . 'HomeView.php'); 
+                    try 
+                    {
+                        if (!empty($_GET['sPage'])) {
+                            include(PATH_VIEW . $_GET['sPage'] . 'View.php'); 
+                        } else {
+                            include(PATH_VIEW . 'HomeView.php'); 
+                        }
+                    }
+                    catch(Exception $oExcepction)
+                    {
+                        echo $oExcepction;
                     }
                 ?>
                 </div>
