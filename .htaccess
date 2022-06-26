@@ -5,7 +5,7 @@ RewriteEngine on
 
 ReWriteRule ^Home$ index.php [NC]
 ReWriteRule ^Register$ index.php?sPage=Register [NC]
-ReWriteRule ^Login index.php?sPage=Login [NC]
+ReWriteRule ^Login$ index.php?sPage=Login [NC]
 ReWriteRule ^PerfilTrabalhador index.php?sPage=PerfilTrabalhador [NC]
 ReWriteRule ^PerfilUsuario index.php?sPage=PerfilUsuario [NC]
 ReWriteRule ^Administrador index.php?sPage=Administrador [NC]

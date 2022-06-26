@@ -15,9 +15,9 @@
         echo $sRet;
     }
 
-    // function headerLocation($sPage)
-    // {
-    //     echo "<script>window.location.href = '" . $sPage . "' </script>";
-    //     die();
-    // }
+    function headerLocation($sPage)
+    {
+        echo "<script>window.location.href = '" . $sPage . "' </script>";
+        die();
+    }
 ?>

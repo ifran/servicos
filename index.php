@@ -6,7 +6,18 @@
     $sPage = (isset($_GET['sPage']) ? $_GET['sPage'] : '');
     validateSession($sPage);
 
-    $sLogin = ($_SESSION['bLogin'] ? 'Logout' : 'Login');
+    if (isset($_SESSION['bLogin']))
+    {
+        $sLogin = 'Logout';
+        $sLoginLink = 'loginAction.php?sLogout=1';
+    }
+    else
+    {
+        $sLogin = 'Login';
+        $sLoginLink = 'Login';
+    }
+
+    echo $_SESSION['bLogin'];
 ?>
 <!doctype html>
 <html lang="en" class="h-100">
