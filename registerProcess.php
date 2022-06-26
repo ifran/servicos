@@ -13,7 +13,7 @@
             $oServicos->insert($sSql);
         }
 
-        $oUsuario->servicosUsuario($_POST['trabalho'], $iUsuarioId);
+        $oUsuario->registrarServicosUsuario($_POST['trabalho'], $iUsuarioId);
 
         $_SESSION['bLogin'] = $iUsuarioId;
         headerLocation('Home');

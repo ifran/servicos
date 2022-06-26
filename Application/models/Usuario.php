@@ -18,7 +18,7 @@
             return $iId;
         }
 
-        public function servicosUsuario($aTrabalho, $iUsuarioId)
+        public function registrarServicosUsuario($aTrabalho, $iUsuarioId)
         {
             $sSql = 'DELETE FROM usuario_servico WHERE usuario_id = ' . $iUsuarioId . ';';
             
@@ -28,6 +28,44 @@
             }
             
             $this->executeQuery($sSql);
+        }
+
+        public function buscarServicosUsuario($iTrabalhoId = null, $iAvaliacao = null)
+        {
+            $sSql = 'SELECT u.*, us.*, s.*
+                        , IFNULL((SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id), "Sem Avaliação") AS avaliacao_nota
+                        , (SELECT count(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) AS avaliacao_pessoas
+                    FROM usuario u
+                    LEFT JOIN usuario_servico us ON (us.usuario_id = u.usuario_id)
+                    LEFT JOIN servicos s ON (s.servico_id = us.servico_id)
+                    WHERE 1=1';
+            
+            if ($iAvaliacao != null)
+            {
+                $sSql .= ' AND (SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) = ' . $iAvaliacao;
+            }
+            if ($iTrabalhoId != null) 
+            {
+                $sSql .= ' AND us.servico_id = ' . $iTrabalhoId;
+            }
+
+            $oReturn = $this->select($sSql);
+            return $oReturn;
+        }
+
+        public function buscarUsuario($iUsuarioId)
+        {
+            $sSql = 'SELECT u.*, us.*, s.*
+                        , IFNULL((SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id), "Sem Avaliação") AS avaliacao_nota
+                        , (SELECT count(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) AS avaliacao_pessoas
+                    FROM usuario u
+                    LEFT JOIN usuario_servico us ON (us.usuario_id = u.usuario_id)
+                    LEFT JOIN servicos s ON (s.servico_id = us.servico_id)
+                    WHERE 1=1
+                    AND u.usuario_id = ' . $iUsuarioId;
+
+            $oReturn = $this->select($sSql);
+            return $oReturn;
         }
     }
 ?>

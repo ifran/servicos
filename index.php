@@ -10,14 +10,16 @@
     {
         $sLogin = 'Logout';
         $sLoginLink = 'loginAction.php?sLogout=1';
+        $sPerfil = 'Meu Perfil';
+        $sPerfilLink = 'PerfilUsuario';
     }
     else
     {
         $sLogin = 'Login';
         $sLoginLink = 'Login';
+        $sPerfil = 'Quero me cadastrar';
+        $sPerfilLink = 'Register';
     }
-
-    echo $_SESSION['bLogin'];
 ?>
 <!doctype html>
 <html lang="en" class="h-100">
@@ -53,8 +55,8 @@
                 <div>
                     <a href="Home"><h3 class="float-md-start mb-0">Home</h3></a>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
-                        <a class="nav-link login bgMenu" href="Login"><?=$sLogin?></a>
-                        <a class="nav-link login bgMenu" href="Register">Quero me cadastrar</a>
+                        <a class="nav-link login bgMenu" href="<?=$sLoginLink?>"><?=$sLogin?></a>
+                        <a class="nav-link login bgMenu" href="<?=$sPerfilLink?>"><?=$sPerfil?></a>
                     </nav>
                 </div>
             </header>

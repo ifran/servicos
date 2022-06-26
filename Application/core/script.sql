@@ -1,6 +1,6 @@
 CREATE DATABASE projetoFinal;
 CREATE TABLE usuario (
-  usuaro_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INTEGER AUTO_INCREMENT PRIMARY KEY,
   usuario_tipo INTEGER,
   usuario_nome VARCHAR(255),
   usuario_email VARCHAR(255),

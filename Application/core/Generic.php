@@ -20,4 +20,17 @@
         echo "<script>window.location.href = '" . $sPage . "' </script>";
         die();
     }
+    
+    function alert($sMsg)
+    {
+        echo "<script>alert('" . $sMsg . "');</script>";
+    }
+
+    function setSelected($sName, $iValue)
+    {
+        if (isset($_POST[$sName]) && $_POST[$sName] == $iValue)
+        {
+            return 'selected';
+        }
+    }
 ?>

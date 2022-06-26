@@ -1,3 +1,14 @@
+<?php
+    $oUsuario = new Usuario();
+    $aUsuario = $oUsuario->buscarUsuario($_GET['iUsuarioId']);
+    
+    $oUsuarioData = $aUsuario[0];
+    $sLi = '';
+    foreach ($aUsuario as $oItem)
+    {
+        $sLi .= '<li>' . $oItem['servico_nome'] . '</li>';
+    }
+?>
 <div class="container">
     <div id="tabs">
         <main>
@@ -11,9 +22,10 @@
                     <div class="row">
                         <div class="col">
                             <div class="col-sm">
-                                <div>Nome</div>
-                                <div>Avaliação</div>
-                                <div>Trabalhos</div>
+                                <img src="public/assets/img/">
+                                <div><?=$oUsuarioData['usuario_nome']?></div>
+                                <div><?=$oUsuarioData['avaliacao_nota']?></div>
+                                <div>Trabalhos<u><?=$sLi?></u></div>
                             </div>
                         </div>
                     </div>
@@ -27,24 +39,37 @@
                     <button class="btn btn-primary btn-lg" type="submit">Whastapp</button>
                     
                     <h2>Avalicações</h2>
+                    <?php 
+                        $oAvaliacao = new Avaliacao();
+                        $aAvaliacao = $oAvaliacao->buscarAvaliacoes($_GET['iUsuarioId']);
+                        
+                        for ($i = 0; $i < count($aAvaliacao); $i++)
+                        {
+                            $aUser1 = array();
+                            $aUser2 = array();
+                            if ($i % 2 == 0)
+                            {
+                                $aUser1 = $aUsuario[$i];
+                                $aUser2 = (isset($aUsuario[$i + 1]) ? $aUsuario[$i + 1] : '');
+                                
+                                $sUser1 = '';
+                                $sUser2 = '';
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="row perfis">
-                                <div class="col-sm">
-                                    <div>Nome do avaliador</div>
-                                    <div>Mensagem</div>
-                                </div>
-                            </div>
-                            <div class="row perfis">
-                                <div class="col-sm">
-                                    <div>Nome do avaliador</div>
-                                    <div>Mensagem</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                                if (count($aUser1) > 0) 
+                                {
+                                    $sUser1 = ' <div>' . $aUser1['usuario_nome'] . '</div>
+                                                <div>' . $aUser1['avaliacao_mensagem'] . '</div>';
+                                } 
+                                else if (count($aUser2) > 0) 
+                                {
+                                    $sUser2 = ' <div>' . $aUser2['usuario_nome'] . '</div>
+                                                <div>' . $aUser2['avaliacao_mensagem'] . '</div>';
+                                }
+
+                                include('HomeSearchView.php');
+                            }
+                        }
+                    ?>
                 </form>
             </div>
         </main>
