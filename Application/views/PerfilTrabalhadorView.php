@@ -17,67 +17,67 @@
             </ul>
             
             <div class="register">
-                <form>
-                    <div class="row">
-                        <div class="col">
-                            <div class="col-sm">
-                                <img class="imagem" src="<?=HOST_PUBLIC?>public/assets/imguser/<?=$oUsuarioData['usuario_foto']?>">
-                                <div><?=$oUsuarioData['usuario_nome']?></div>
-                                <div><?=$oUsuarioData['avaliacao_nota']?></div>
-                                <div>Preço base: <?=$oUsuarioData['usuario_preco']?></div>
-                                <div>Trabalhos<u><?=$sLi?></u></div>
-                            </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="col-sm">
+                            <img class="imagem" src="<?=HOST_PUBLIC?>public/assets/imguser/<?=$oUsuarioData['usuario_foto']?>">
+                            <div><?=$oUsuarioData['usuario_nome']?></div>
+                            <div><?=$oUsuarioData['avaliacao_nota']?></div>
+                            <div>Preço base: <?=$oUsuarioData['usuario_preco']?></div>
+                            <div>Trabalhos<u><?=$sLi?></u></div>
                         </div>
                     </div>
-                    <hr class="my-4">
-                    <!-- ----------------------------------------------------------- -->
-                    
-                    <!-- Abrir modal -->
-                    <?php if ($_SESSION['bLogin'] != $_GET['iUsuarioId']) { ?>
-                        <p><a href="#contatar" rel="modal:open">Contatar</a></p>
-                        <p><a href="#avaliar" rel="modal:open">Avaliar</a></p>
-                        <button class="btn btn-primary btn-lg" type="submit">Whastapp</button>
-                    <?php } ?>
+                </div>
+                <hr class="my-4">
+                <!-- ----------------------------------------------------------- -->
+                
+                <!-- Abrir modal -->
+                <?php if ($_SESSION['bLogin'] != $_GET['iUsuarioId']) { ?>
+                    <p><a href="#contatar" rel="modal:open">Contatar</a></p>
+                    <p><a href="#avaliar" rel="modal:open">Avaliar</a></p>
+                    <a href="https://api.whatsapp.com/send/?phone=<?=$oUsuarioData['usuario_telefone']?>" target="_blank"><p class="btn btn-primary btn-lg">Whastapp</p></a>
+                <?php } ?>
 
-                    <hr class="my-4">
+                <hr class="my-4">
 
-                    <h2>Avalicações</h2>
-                    <?php 
-                        $oAvaliacao = new Avaliacao();
-                        $aAvaliacao = $oAvaliacao->buscarAvaliacoes($_GET['iUsuarioId']);
+                <h2>Avalicações</h2>
+                <?php 
+                    $oAvaliacao = new Avaliacao();
+                    $aAvaliacao = $oAvaliacao->buscarAvaliacoes($_GET['iUsuarioId']);
 
-                        for ($i = 0; $i < count($aAvaliacao); $i++)
+                    for ($i = 0; $i < count($aAvaliacao); $i++)
+                    {
+                        $aUser1 = array();
+                        $aUser2 = array();
+                        if ($i % 2 == 0)
                         {
-                            $aUser1 = array();
-                            $aUser2 = array();
-                            if ($i % 2 == 0)
+                            $aUser1 = $aAvaliacao[$i];
+                            $aUser2 = (isset($aAvaliacao[$i + 1]) ? $aAvaliacao[$i + 1] : '');
+                            
+                            $sUser1 = '';
+                            $sUser2 = '';
+                            
+                            if (isset($aUser1['usuario_nome']))
                             {
-                                $aUser1 = $aAvaliacao[$i];
-                                $aUser2 = (isset($aAvaliacao[$i + 1]) ? $aAvaliacao[$i + 1] : '');
-                                
-                                $sUser1 = '';
-                                $sUser2 = '';
-                                
-                                if (isset($aUser1['usuario_nome']))
-                                {
-                                    $sUser1 = ' <div>' . $aUser1['usuario_nome'] . '</div>
-                                                <div>' . $aUser1['avaliacao_mensagem'] . '</div>
-                                                <div>' . $aUser1['avaliacao_nota'] . ' estrelas</div>
-                                                ';
-                                } 
-                                if (isset($aUser2['usuario_nome']))
-                                {
-                                    $sUser2 = ' <div>' . $aUser2['usuario_nome'] . '</div>
-                                                <div>' . $aUser2['avaliacao_mensagem'] . '</div>
-                                                <div>' . $aUser2['avaliacao_nota'] . '</div>
-                                                ';
-                                }
-
-                                include('AvaliacaoView.php');
+                                $sUser1 = ' <div>' . $aUser1['usuario_nome'] . '</div>
+                                            <div>' . $aUser1['avaliacao_mensagem'] . '</div>
+                                            <div>' . $aUser1['avaliacao_nota'] . ' estrelas</div>
+                                            ';
+                            } 
+                            if (isset($aUser2['usuario_nome']))
+                            {
+                                $sUser2 = ' <div>' . $aUser2['usuario_nome'] . '</div>
+                                            <div>' . $aUser2['avaliacao_mensagem'] . '</div>
+                                            <div>' . $aUser2['avaliacao_nota'] . '</div>
+                                            ';
                             }
+
+                            include('AvaliacaoView.php');
                         }
-                    ?>
-                </form>
+                    }
+                ?>
+                
             </div>
         </main>
     </div>

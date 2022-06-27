@@ -77,7 +77,7 @@
                                     $sUserLink1 = $aUser1['usuario_id'];
                                     $sUserImg1 = '<img class="imagem" src="public/assets/imguser/' . $aUser1['usuario_foto'] . '">';
                                     $sUser1 = ' <div>' . $aUser1['usuario_nome'] . '</div>
-                                                <div>' . $aUser1['avaliacao_nota'] . '</div>
+                                                <div>' . $aUser1['avaliacao_nota'] . ' estrelas</div>
                                                 <div>' . $aUser1['servico_nome'] . '</div>';
                                 }
                                 
@@ -86,7 +86,7 @@
                                     $sUserLink2 = $aUser2['usuario_id'];
                                     $sUserImg2 = '<img class="imagem" src="public/assets/imguser/' . $aUser2['usuario_foto'] . '">';
                                     $sUser2 = ' <div>' . $aUser2['usuario_nome'] . '</div>
-                                                <div>' . $aUser2['avaliacao_nota'] . '</div>
+                                                <div>' . $aUser2['avaliacao_nota'] . ' </div>
                                                 <div>' . $aUser2['servico_nome'] . '</div>';
                                 }
                                 

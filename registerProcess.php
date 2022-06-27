@@ -13,7 +13,10 @@
             $oServicos->insert($sSql);
         }
 
-        $oUsuario->registrarServicosUsuario($_POST['trabalho'], $iUsuarioId);
+        if (isset($_POST['trabalho']) && count($_POST['trabalho']) > 0) 
+        {
+            $oUsuario->registrarServicosUsuario($_POST['trabalho'], $_SESSION['bLogin']);
+        }
 
         $_SESSION['bLogin'] = $iUsuarioId;
         headerLocation('Home');
@@ -52,7 +55,10 @@
             $oServicos->insert($sSql);
         }
 
-        $oUsuario->registrarServicosUsuario($_POST['trabalho'], $_SESSION['bLogin']);
+        if (isset($_POST['trabalho']) && count($_POST['trabalho']) > 0) 
+        {
+            $oUsuario->registrarServicosUsuario($_POST['trabalho'], $_SESSION['bLogin']);
+        }
         
         if (!empty($_FILES["foto"]['name']))
         {

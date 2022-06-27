@@ -14,6 +14,11 @@
     }
 }
 
+h2 {
+    font-size: 20px;
+    margin: 15px;
+}
+
 .bgBlack {
     background-color: rgb(157, 175, 255);
 }
