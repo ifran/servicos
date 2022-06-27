@@ -1,3 +1,4 @@
+<hr class="my-4">
 <div class="row">
     <div class="col">
         <a href="PerfilTrabalhador/<?=$sUserLink1?>">

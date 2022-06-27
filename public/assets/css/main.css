@@ -15,7 +15,7 @@
 }
 
 .bgBlack {
-    background-color: rgba(62, 6, 6, 0.671);
+    background-color: rgb(157, 175, 255);
 }
 
 #menu {
@@ -176,20 +176,15 @@
 }
 
 .login {
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .login:hover {
     color: rgb(235, 4, 4);
 }
 
-.card-register {
-    color: black;
-    margin: 5px 5px 5px 5px;
-}
-
 .bgMenu {
-    background-color: rgba(255, 170, 0, 0.619);
+    background-color: rgba(25, 0, 255, 0.619);
     margin: 10px;
 }
 

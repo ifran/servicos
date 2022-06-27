@@ -38,7 +38,9 @@
                         <p><a href="#avaliar" rel="modal:open">Avaliar</a></p>
                         <button class="btn btn-primary btn-lg" type="submit">Whastapp</button>
                     <?php } ?>
-                    
+
+                    <hr class="my-4">
+
                     <h2>Avalicações</h2>
                     <?php 
                         $oAvaliacao = new Avaliacao();
