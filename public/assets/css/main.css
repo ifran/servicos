@@ -209,4 +209,6 @@
 
 .aba {
     height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
