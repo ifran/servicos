@@ -206,3 +206,12 @@
 .coluna {
     padding: 10px;
 }
+
+.imagem {
+    width: 70px;
+    height: 90px;
+}
+
+.aba {
+    height: 700px;
+}

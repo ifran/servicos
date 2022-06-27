@@ -37,21 +37,22 @@
                         , (SELECT count(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) AS avaliacao_pessoas
                         , GROUP_CONCAT(s.servico_nome) AS servico_nome
                     FROM usuario u
-                    LEFT JOIN usuario_servico us ON (us.usuario_id = u.usuario_id)
-                    LEFT JOIN servicos s ON (s.servico_id = us.servico_id)
+                    INNER JOIN usuario_servico us ON (us.usuario_id = u.usuario_id)
+                    INNER JOIN servicos s ON (s.servico_id = us.servico_id)
                     WHERE 1=1';
             
-            if ($iAvaliacao != null)
+            if ($iAvaliacao != null AND $iAvaliacao != '')
             {
-                $sSql .= ' AND (SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) = ' . $iAvaliacao;
+                $sSql .= ' AND (SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) >= ' . $iAvaliacao;
             }
-            if ($iTrabalhoId != null) 
+            
+            if ($iTrabalhoId != null AND $iTrabalhoId != '') 
             {
                 $sSql .= ' AND us.servico_id = ' . $iTrabalhoId;
             }
             
             $sSql .= ' GROUP BY u.usuario_id';
-
+            
             $oReturn = $this->select($sSql);
             return $oReturn;
         }
@@ -69,6 +70,29 @@
 
             $oReturn = $this->select($sSql);
             return $oReturn;
+        }
+
+        public function atualizarUsuario($aUsuario)
+        {
+            $sSql = 'SELECT * FROM usuario WHERE usuario_id = ' . $_SESSION['bLogin'] . ' AND usuario_senha = "' . $aUsuario['password'] . '"';
+            $aSenha = $this->select($sSql);
+            $sUpdateSenha = '';
+            if (count($aSenha) == 0) {
+                $sUpdateSenha = ' , usuario_senha = "' . md5($aUsuario['password']) . '"';
+            }
+            
+            $sSql = "UPDATE usuario 
+                    SET usuario_nome = '" . $aUsuario['nome'] . "'
+                        , usuario_email = '" . $aUsuario['email'] . "'
+                        , usuario_senha = '" . $aUsuario['password'] . "'
+                        , usuario_telefone = '" . $aUsuario['telefone'] . "'
+                        , usuario_cpf = '" . $aUsuario['cpf'] . "'
+                        , usuario_data_nascimento = '" . $aUsuario['data_nascimento'] . "'
+                        , usuario_endereco = '" . $aUsuario['endereco'] . "'
+                        , usuario_preco = '" . $aUsuario['preco'] . "'
+                        $sUpdateSenha
+                    WHERE usuario_id = " . $_SESSION['bLogin'];
+            $this->executeQuery($sSql);
         }
     }
 ?>

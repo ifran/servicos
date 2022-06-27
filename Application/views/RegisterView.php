@@ -14,7 +14,7 @@
             <ul>
                 <li><a href="#fragment-1"><span>Cadastro</span></a></li>
             </ul>
-            <div>
+            <div class="register" id="fragment-1">
                 <form action="registerProcess.php" method="post" enctype="multipart/form-data">
                     <div class="col-12">
                         <label for="nome" class="form-label">Nome Completo</label>

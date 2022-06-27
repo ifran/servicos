@@ -1,7 +1,7 @@
 <?php 
     header('Content-Type: text/html; charset=utf-8');
     include('Application/core/Inc.php');
-    $iV = rand(1000,2000);
+    $iV = rand(0,2000);
 
     $sPage = (isset($_GET['sPage']) ? $_GET['sPage'] : '');
     validateSession($sPage);
@@ -11,14 +11,14 @@
         $sLogin = 'Logout';
         $sLoginLink = HOST_PUBLIC . 'loginAction.php?sLogout=1';
         $sPerfil = 'Meu Perfil';
-        $sPerfilLink = 'PerfilUsuario';
+        $sPerfilLink = HOST_PUBLIC . 'PerfilUsuario';
     }
     else
     {
         $sLogin = 'Login';
         $sLoginLink = HOST_PUBLIC . 'Login';
         $sPerfil = 'Quero me cadastrar';
-        $sPerfilLink = 'Register';
+        $sPerfilLink = HOST_PUBLIC . 'Register';
     }
 ?>
 <!doctype html>

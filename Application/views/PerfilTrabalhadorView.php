@@ -18,25 +18,26 @@
             
             <div class="register">
                 <form>
-
                     <div class="row">
                         <div class="col">
                             <div class="col-sm">
-                                <img src="public/assets/img/">
+                                <img class="imagem" src="<?=HOST_PUBLIC?>public/assets/imguser/<?=$oUsuarioData['usuario_foto']?>">
                                 <div><?=$oUsuarioData['usuario_nome']?></div>
                                 <div><?=$oUsuarioData['avaliacao_nota']?></div>
+                                <div>Preço base: <?=$oUsuarioData['usuario_preco']?></div>
                                 <div>Trabalhos<u><?=$sLi?></u></div>
                             </div>
                         </div>
                     </div>
-
                     <hr class="my-4">
                     <!-- ----------------------------------------------------------- -->
-
-                    <!-- Link to open the modal -->
-                    <p><a href="#contatar" rel="modal:open">Contatar</a></p>
-                    <p><a href="#avaliar" rel="modal:open">Avaliar</a></p>
-                    <button class="btn btn-primary btn-lg" type="submit">Whastapp</button>
+                    
+                    <!-- Abrir modal -->
+                    <?php if ($_SESSION['bLogin'] != $_GET['iUsuarioId']) { ?>
+                        <p><a href="#contatar" rel="modal:open">Contatar</a></p>
+                        <p><a href="#avaliar" rel="modal:open">Avaliar</a></p>
+                        <button class="btn btn-primary btn-lg" type="submit">Whastapp</button>
+                    <?php } ?>
                     
                     <h2>Avalicações</h2>
                     <?php 
@@ -79,6 +80,7 @@
         </main>
     </div>
 </div>
+
 <!-- Modais -->
 <div id="contatar" class="modal">
     <form action="../registerProcess.php" method="post">

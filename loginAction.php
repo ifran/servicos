@@ -5,13 +5,11 @@
 
         if (isset($_GET['sLogout']) AND $_GET['sLogout'] == 1)
         {
-            echo 'aqui';
             unset($_SESSION['bLogin']);
         }
 
         if (!empty($_POST['email']) AND !empty($_POST['password']))
         {
-            
             $sNome = $_POST['email'];
             $sSenha = md5($_POST['password']);
 
@@ -22,7 +20,7 @@
             if (count($aReturn) > 0)
             {
                 $aReturn = $aReturn[0];
-                $_SESSION['bLogin'] = $aReturn['usuaro_id'];
+                $_SESSION['bLogin'] = $aReturn['usuario_id'];
             }
             else 
             {
