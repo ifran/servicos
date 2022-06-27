@@ -197,3 +197,12 @@
     background-color: rgba(51, 34, 0, 0.963);
     margin: 10px;
 }
+
+.tabela {
+    color: black;
+    margin: 40% auto;
+}
+
+.coluna {
+    padding: 10px;
+}

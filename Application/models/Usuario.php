@@ -32,9 +32,10 @@
 
         public function buscarServicosUsuario($iTrabalhoId = null, $iAvaliacao = null)
         {
-            $sSql = 'SELECT u.*, us.*, s.*
-                        , IFNULL((SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id), "Sem Avaliação") AS avaliacao_nota
+            $sSql = 'SELECT us.*, s.*, u.*
+                        , IFNULL((SELECT ROUND(AVG(avaliacao_nota), 2) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id), "Sem Avaliação") AS avaliacao_nota
                         , (SELECT count(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) AS avaliacao_pessoas
+                        , GROUP_CONCAT(s.servico_nome) AS servico_nome
                     FROM usuario u
                     LEFT JOIN usuario_servico us ON (us.usuario_id = u.usuario_id)
                     LEFT JOIN servicos s ON (s.servico_id = us.servico_id)
@@ -48,6 +49,8 @@
             {
                 $sSql .= ' AND us.servico_id = ' . $iTrabalhoId;
             }
+            
+            $sSql .= ' GROUP BY u.usuario_id';
 
             $oReturn = $this->select($sSql);
             return $oReturn;
@@ -56,7 +59,7 @@
         public function buscarUsuario($iUsuarioId)
         {
             $sSql = 'SELECT u.*, us.*, s.*
-                        , IFNULL((SELECT AVG(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id), "Sem Avaliação") AS avaliacao_nota
+                        , IFNULL((SELECT ROUND(AVG(avaliacao_nota), 2) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id), "Sem Avaliação") AS avaliacao_nota
                         , (SELECT count(avaliacao_nota) FROM avaliacao WHERE usuario_contratado_id = u.usuario_id) AS avaliacao_pessoas
                     FROM usuario u
                     LEFT JOIN usuario_servico us ON (us.usuario_id = u.usuario_id)

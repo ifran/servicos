@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <a href="PerfilTrabalhador/<?=$aUserLink1?>">
+        <a href="PerfilTrabalhador/<?=$sUserLink1?>">
             <div class="row perfis">
                 <div class="col-sm">
                     <?=$sUserImg1?>
@@ -10,7 +10,7 @@
                 </div>
             </div>
         </a>
-        <a href="PerfilTrabalhador/<?=$aUserLink2?>">
+        <a href="PerfilTrabalhador/<?=$sUserLink2?>">
             <div class="row perfis">
                 <div class="col-sm">
                     <?=$sUserImg2?>

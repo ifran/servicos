@@ -5,6 +5,7 @@
 
         if (isset($_GET['sLogout']) AND $_GET['sLogout'] == 1)
         {
+            echo 'aqui';
             unset($_SESSION['bLogin']);
         }
 

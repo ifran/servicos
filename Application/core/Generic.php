@@ -17,7 +17,7 @@
 
     function headerLocation($sPage)
     {
-        echo "<script>window.location.href = '" . $sPage . "' </script>";
+        echo "<script>window.location.href = '" . HOST_PUBLIC . $sPage . "' </script>";
         die();
     }
     

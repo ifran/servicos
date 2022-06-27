@@ -57,7 +57,8 @@
                         {
                             $aUser1 = array();
                             $aUser2 = array();
-                            if ($i % 2 == 0)
+                            
+                            if (($i % 2) == 0)
                             {
                                 $aUser1 = $aUsuario[$i];
                                 $aUser2 = (isset($aUsuario[$i + 1]) ? $aUsuario[$i + 1] : '');
@@ -68,24 +69,32 @@
                                 $sUserImg1 = '';
                                 $sUserImg2 = '';
 
-                                if (count($aUser1) > 0) 
+                                $sUserLink1 = '';
+                                $sUserLink2 = '';
+                                
+                                if (isset($aUser1))
                                 {
-                                    $aUserLink1 = $aUser1['usuario_id'];
+                                    $sUserLink1 = $aUser1['usuario_id'];
                                     $sUserImg1 = '<img src="public/assets/img/' . $aUser1['usuario_foto'] . '">';
                                     $sUser1 = ' <div>' . $aUser1['usuario_nome'] . '</div>
                                                 <div>' . $aUser1['avaliacao_nota'] . '</div>
                                                 <div>' . $aUser1['servico_nome'] . '</div>';
-                                } 
-                                else if (count($aUser2) > 0) 
+                                }
+                                
+                                if (isset($aUser2))
                                 {
-                                    $aUserLink2 = $aUser2['usuario_id'];
+                                    $sUserLink2 = $aUser2['usuario_id'];
                                     $sUserImg2 = '<img src="public/assets/img/' . $aUser2['usuario_foto'] . '">';
                                     $sUser2 = ' <div>' . $aUser2['usuario_nome'] . '</div>
                                                 <div>' . $aUser2['avaliacao_nota'] . '</div>
                                                 <div>' . $aUser2['servico_nome'] . '</div>';
                                 }
-
+                                
                                 include('HomeSearchView.php');
+                            }
+                            else 
+                            {
+                                continue;
                             }
                         }
                     }

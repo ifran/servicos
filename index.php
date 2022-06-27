@@ -9,14 +9,14 @@
     if (isset($_SESSION['bLogin']))
     {
         $sLogin = 'Logout';
-        $sLoginLink = 'loginAction.php?sLogout=1';
+        $sLoginLink = HOST_PUBLIC . 'loginAction.php?sLogout=1';
         $sPerfil = 'Meu Perfil';
         $sPerfilLink = 'PerfilUsuario';
     }
     else
     {
         $sLogin = 'Login';
-        $sLoginLink = 'Login';
+        $sLoginLink = HOST_PUBLIC . 'Login';
         $sPerfil = 'Quero me cadastrar';
         $sPerfilLink = 'Register';
     }
@@ -53,7 +53,7 @@
         <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="menu">
             <header class="mb-auto">
                 <div>
-                    <a href="Home"><h3 class="float-md-start mb-0">Home</h3></a>
+                    <a href="<?=HOST_PUBLIC?>Home"><h3 class="float-md-start mb-0">Home</h3></a>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
                         <a class="nav-link login bgMenu" href="<?=$sLoginLink?>"><?=$sLogin?></a>
                         <a class="nav-link login bgMenu" href="<?=$sPerfilLink?>"><?=$sPerfil?></a>
